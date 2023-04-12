@@ -1,10 +1,11 @@
 const { Pool, Client } = require('pg');
+const config = require('../dbconfig.js');
 
 const pool = new Pool({
-  user: 'xiaowu',
-  database: 'overview',
-  port: 5432,
-  host: 'localhost'});
+  user: config.USER,
+  database: config.DATABASE,
+  port: config.PORT,
+  host: config.HOST});
 
 // get the product matching product_id input
 const getProduct = (id, callback) => {

@@ -1,12 +1,17 @@
 const { Pool, Client } = require('pg');
+const config = require('../dbconfig.js');
 
 const pool = new Pool({
-  user: 'xiaowu',
-  database: 'overview',
-  port: 5432,
-  host: 'localhost'});
+  user: config.USER,
+  database: config.DATABASE,
+  port: config.PORT,
+  host: config.HOST});
 
-  const readProducts = (id) => {
+  const readProducts = (limit) => {
+    return pool.query( `SELECT * FROM products LIMIT ${limit}`)
+  }
+
+  const readProduct = (id) => {
     return pool.query(`SELECT * FROM products WHERE product_id = ${id}`)
   };
 
@@ -43,4 +48,4 @@ const pool = new Pool({
     )
   }
 
-  module.exports = {readProducts, readFeatures, readRelatedProducts, readStyles};
+  module.exports = {readProducts, readProduct, readFeatures, readRelatedProducts, readStyles};

@@ -1,8 +1,16 @@
-const { readProducts, readFeatures, readRelatedProducts, readStyles} = require('../controllers/products.js');
+const { readProducts, readProduct, readFeatures, readRelatedProducts, readStyles} = require('../controllers/products.js');
+
+const getProducts = (count) => {
+  return readProducts(count)
+  .then((res) => {
+    return res.rows;
+  })
+  .catch(err => {console.log(err, 'err getting product from db')})
+}
 
 const getProduct = (id, callback) => {
   let productInfo;
-  return readProducts(id)
+  return readProduct(id)
   .then((res) => {
     productInfo = res.rows[0];
     return readFeatures(id)
@@ -31,4 +39,4 @@ const getStyles = (id) => {
   .catch(err => {console.log(err, 'err getting styles from db')})
 }
 
-module.exports = {getProduct, getRelatedProducts, getStyles};
+module.exports = {getProducts, getProduct, getRelatedProducts, getStyles};

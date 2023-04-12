@@ -1,12 +1,18 @@
 const express = require('express');
 const app = express();
-const { getProduct, getRelatedProducts, getStyles } = require('./models/products.js');
+const { getProducts, getProduct, getRelatedProducts, getStyles } = require('./models/products.js');
 const port = 3000;
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
 
+app.get(`/products/`, (req, res) => {
+  getProducts(req.query.count)
+  .then(data => {
+    res.send(data);
+  })
+})
 app.get(`/products/product/`, (req, res) => {
   getProduct(req.query.product_id, (data) => {
     res.send(data);

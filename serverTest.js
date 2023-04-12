@@ -1,33 +1,6 @@
 const http = require('k6/http')
 const {check, sleep} = require('k6')
 
-// module.exports = {
-//   options: {
-//     stages: [
-//       { duration: '5s', target: 10 },
-//       { duration: '20s', target: 20 },
-//       { duration: '2s', target: 0 }
-
-//     ],
-//     thresholds: {
-//       http_req_duration: ['p(90)<20', 'p(95)<50', 'p(100)<100']
-//     }
-//   },
-
-// default: function () {
-//   const res = http.get('http://localhost:3000/products/product/?product_id=2');;
-//   check(res, {
-//     'status was 200': (r) => r.status === 200,
-//     'duration was <= 20ms': (r) => r.timings.duration <= 20,
-//     'duration was <= 50ms': (r) => r.timings.duration <= 50,
-//     'duration was <= 100ms': (r) => r.timings.duration <= 100,
-//   });
-//   sleep(1);
-//   }
-
-// }
-
-
 module.exports = {
   options: {
     stages: [
