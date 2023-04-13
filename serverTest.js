@@ -3,11 +3,13 @@ const {check, sleep} = require('k6')
 
 module.exports = {
   options: {
-    stages: [
-      { duration: '5s', target: 10 },
-      { duration: '20s', target: 20 },
-      { duration: '2s', target: 0 }
-
+      stages:[
+        {duration:'30s', target:10},
+        {duration:'1m', target:50},//normal request load
+        {duration:'1m', target:1000},// request load around the breaking point
+        {duration:'1m', target:1000},
+        {duration:'30s', target:2000},// request load beyond the breaking point
+        {duration:'30s', target:0},//scale down to 0 requests for recovery stage
     ],
     thresholds: {
       http_req_failed: ['rate<0.01'],
