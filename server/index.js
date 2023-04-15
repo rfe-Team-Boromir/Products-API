@@ -24,11 +24,17 @@ app.get(`/products/related/`, (req, res) => {
   .then(data => {
     res.send(data);
   })
+  .catch(err => {
+    console.log(err, 'err with related query call');
+  })
 })
 
 app.get(`/products/styles/`, (req, res) => {
   getStyles(req.query.product_id)
   .then(data => {
     res.send(data);
+  })
+  .catch(err => {
+    console.log(err, 'err with styles query call');
   })
 })

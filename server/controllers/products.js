@@ -4,6 +4,7 @@ const config = require('../dbconfig.js');
 const pool = new Pool({
   user: config.USER,
   database: config.DATABASE,
+  password: config.PASSWORD,
   port: config.PORT,
   host: config.HOST});
 
